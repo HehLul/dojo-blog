@@ -9,6 +9,7 @@ const[blogs, setBlogs] = useState([
     {title: "Web Dev Top Tips", body:'lorem ipsum...', author: "mario",id: 3}
 ]);
 
+const [name, setName] = useState("mario");
 
 const handleDelete = (id)=>{
     const newBlogs = blogs.filter(blog => blog.id !== id);//keep blogs that dont match id
@@ -19,15 +20,15 @@ const handleDelete = (id)=>{
 //DONT change state inside udseEffect, leads to infinite loop
 useEffect (()=>{
     console.log("use effect ran.");
-    console.log(blogs);
-})
+    console.log(name);
+}, [name])
 
 //----------MAIN RETURN-----------------------------------
     return (
         <div className="home">
             <BlogList blogs = {blogs} title = "All blogs" handleDelete = {handleDelete}/>
-            
-
+            <button onClick = {()=>setName("luigi")}>change name</button>
+            <p> {name} </p>
         </div>
         
       );
